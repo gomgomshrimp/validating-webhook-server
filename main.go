@@ -51,15 +51,11 @@ func main() {
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
 
 	_ = <-sigChan
-	logger.Println("Gracefully shutting down go/fiber...")
+	logger.Info("Gracefully shutting down go/fiber...")
 	_ = app.Shutdown()
 
 	// App cleaning tasks
-	// log.Println("Running cleanup tasks...")
-	// db.Close()
-	// redisConn.Close()
-	// Etc...
-	logger.Println("go/fiber was successful shutdown.")
+	logger.Info("go/fiber was successful shutdown.")
 }
 
 func setLogger() *logrus.Logger {

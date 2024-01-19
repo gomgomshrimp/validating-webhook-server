@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gomgomshrimp/validating-webhook-server/admission_validator"
+	admissionvalidator "github.com/gomgomshrimp/validating-webhook-server/validator"
 	"github.com/sirupsen/logrus"
 	admissionv1 "k8s.io/api/admission/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -10,13 +10,13 @@ import (
 
 type Api struct {
 	Logger             *logrus.Logger
-	AdmissionValidator *admission_validator.AdmissionValidator
+	AdmissionValidator *admissionvalidator.AdmissionValidator
 }
 
 func NewApi(logger *logrus.Logger) *Api {
 	return &Api{
 		Logger:             logger,
-		AdmissionValidator: admission_validator.NewAdmissionValidator(logger),
+		AdmissionValidator: admissionvalidator.NewAdmissionValidator(logger),
 	}
 }
 
